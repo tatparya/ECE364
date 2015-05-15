@@ -1,0 +1,30 @@
+#! /bin/bash
+#
+# $Author$
+# $Date$
+# $HeadURL$
+# $Revision$
+# $Id$
+#
+Num_Params=$#
+Param_Values=$@
+if (( $# == 0 ))
+then
+    echo "usage: sensor_sum.sh"
+    exit 0
+fi
+if [[ ! -r $1 ]]
+then
+    echo "error: $1 is not a readable file!"
+    exit 0
+fi
+while read line
+do
+    sum=0
+    v=($line)
+    ((sum = v[1] + v[2] + v[3]))
+    file=$(echo "$line" | head -c2)
+    echo -n "$file "
+    echo "$sum"
+done < "$1"
+exit 0

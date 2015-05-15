@@ -1,0 +1,19 @@
+#! /bin/bash
+#
+# $Author$
+# $Date$
+# $HeadURL$
+# $Revision$
+# $Id$
+#
+Num_Params=$#
+Params=$@
+Input_value=$1
+for (( ; Input_value >= 0; Input_value-- ))
+do
+    if (( Input_value % 3 == 0 ))
+    then
+        echo "$Input_value"
+    fi
+done
+exit 0

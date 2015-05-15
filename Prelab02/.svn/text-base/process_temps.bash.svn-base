@@ -1,0 +1,44 @@
+#/bin/bash
+#
+# $Author$
+# $Date$
+# $HeadURL$
+# $Revision$
+# $Id$
+NumParams=$#
+ParamVals=$@
+#       Check for args
+if (( $NumParams < 1 ))
+then
+    echo "Usage: process_temps.bash <input file>"
+    exit 1
+fi
+if [[ ! -r $1 ]]
+then
+    echo "Error: $2 is not a readable file."
+    exit 2
+fi
+#       Main Script
+exec 5< $1
+read -a header<&5    #       Gets header
+((numServers=${#header[*]}-1))
+while read -a line
+do
+    #    Average temps and print
+    sum=0
+    for temp in ${line[*]} 
+    do
+        if [[ $temp = ${line[0]} ]]
+        then
+            continue
+        fi
+        ((sum=$sum + $temp))
+    done
+    ((avg=$sum / $numServers))
+    echo "Average temperature for time ${line[0]} was $avg C."
+done <&5
+
+
+
+
+exit 0

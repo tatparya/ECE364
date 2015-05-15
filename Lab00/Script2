@@ -1,0 +1,16 @@
+#! /bin/bash
+#
+# $Author: ee364h05 $
+# $Date: 2015-01-15 11:19:16 -0500 (Thu, 15 Jan 2015) $
+# $HeadURL: svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn/S15/students/ee364h05/Lab00/Script2 $
+# $Revision: 72107 $
+# $Id: Script2 72107 2015-01-15 16:19:16Z ee364h05 $
+#
+Num_Params=$#
+Params=$@
+Input_value=$1
+for (( ; Input_value >= 0; Input_value-- ))
+do
+    echo "$Input_value"
+done
+exit 0
